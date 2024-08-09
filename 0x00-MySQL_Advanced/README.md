@@ -6,3 +6,4 @@
 - **3-glam_rock.sql**: SQL script that lists all bands with Glam rock as their main style, ranked by their longevity.
 - **4-store.sql**: SQL script that creates a trigger that decreases the quantity of an item after adding a new order.
 - **5-valid_email.sql**: SQL script that creates a trigger that resets the attribute valid_email only when the email has been changed.
+- **6-bonus.sql**: SQL script that creates a stored procedure AddBonus that adds a new correction for a student.
