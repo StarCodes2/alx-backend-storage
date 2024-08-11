@@ -7,3 +7,4 @@
 - **4-store.sql**: SQL script that creates a trigger that decreases the quantity of an item after adding a new order.
 - **5-valid_email.sql**: SQL script that creates a trigger that resets the attribute valid_email only when the email has been changed.
 - **6-bonus.sql**: SQL script that creates a stored procedure AddBonus that adds a new correction for a student.
+- **7-average_score.sql**: SQL script that creates a stored procedure ComputeAverageScoreForUser that computes and store the average score for a student.
