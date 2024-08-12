@@ -9,3 +9,4 @@
 - **6-bonus.sql**: SQL script that creates a stored procedure AddBonus that adds a new correction for a student.
 - **7-average_score.sql**: SQL script that creates a stored procedure ComputeAverageScoreForUser that computes and store the average score for a student.
 - **8-index_my_names.sql**: SQL script that creates an index idx_name_first on the table names and the first letter of name.
+- **9-index_name_score.sql**: SQL script that creates an index idx_name_first_score on the table names and the first letter of name and the score.
