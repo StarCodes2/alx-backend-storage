@@ -12,4 +12,4 @@
 - **9-index_name_score.sql**: SQL script that creates an index idx_name_first_score on the table names and the first letter of name and the score.
 - **10-div.sql**: SQL script that creates a function SafeDiv that divides (and returns) the first by the second number or returns 0 if the second number is equal to 0.
 -- **11-need_meeting.sql**: SQL script that creates a view need_meeting that lists all students that have a score under 80 (strict) and no last_meeting or more than 1 month.
--- **100-average_weighted_score.sql**: SQL script that creates a stored procedure ComputeAverageScoreForUser that computes and store the average weighted score for a student.
+-- **100-average_weighted_score.sql**: SQL script that creates a stored procedure ComputeAverageWeightedScoreForUser that computes and store the average weighted score for a student.
