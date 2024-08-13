@@ -12,3 +12,4 @@
 - **9-insert_school.py**: Contains a Python function that inserts a new document in a collection based on kwargs.
 - **10-update_topics.py**: Contains a Python function that changes all topics of a school document based on the name.
 - **11-schools_by_topic.py**: Contains a Python function that returns the list of school having a specific topic.
+- **12-log_stats.py**: Contains a Python script that provides some stats about Nginx logs stored in MongoDB.
