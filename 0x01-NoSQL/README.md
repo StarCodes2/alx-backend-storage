@@ -15,3 +15,4 @@
 - **12-log_stats.py**: Contains a Python script that provides some stats about Nginx logs stored in MongoDB.
 - **100-find**: Contains a script that lists all documents with name starting by Holberton in the collection school.
 - **101-students.py**: Contains a Python function that returns all students sorted by average score.
+- **102-log_stats.py**: Contains an improved 12-log_stats.py by adding the top 10 of the most present IPs in the collection nginx of the database logs.
