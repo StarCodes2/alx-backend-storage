@@ -9,3 +9,4 @@
 - **6-update**: Contains a script that adds a new attribute to a document in the collection school.
 - **7-delete**: Contains a script that deletes all documents with name="Holberton school" in the collection school.
 - **8-all.py**: Contains a Python function that lists all documents in a collection.
+- **9-insert_school.py**: Contains a Python function that inserts a new document in a collection based on kwargs.
