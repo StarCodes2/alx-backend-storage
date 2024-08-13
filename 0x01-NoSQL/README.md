@@ -5,3 +5,4 @@
 - **2-insert**: Contains a script that inserts a document in the collection school.
 - **3-all**: Contains a script that lists all documents in the collection school.
 - **4-match**: Contains a script that lists all documents with name="Holberton school" in the collection school.
+- **5-count**: Contains a script that displays the number of documents in the collection school.
