@@ -13,3 +13,4 @@
 - **10-update_topics.py**: Contains a Python function that changes all topics of a school document based on the name.
 - **11-schools_by_topic.py**: Contains a Python function that returns the list of school having a specific topic.
 - **12-log_stats.py**: Contains a Python script that provides some stats about Nginx logs stored in MongoDB.
+- **100-find**: Contains a script that lists all documents with name starting by Holberton in the collection school.
