@@ -44,7 +44,7 @@ def stats():
 
     print("IPs:")
     for ip in collection.aggregate(pipe):
-        print("{}: {}".format(ip['_id'], ip['count']))
+        print("\t{}: {}".format(ip['_id'], ip['count']))
 
 
 if __name__ == "__main__":
