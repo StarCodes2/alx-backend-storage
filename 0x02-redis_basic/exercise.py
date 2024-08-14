@@ -19,6 +19,24 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def call_history(method: Callable) -> Callable:
+    """ Decorator to store the history of inputs and outputs for
+    a particular function. """
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        input_key = "{}:inputs".format(method.__qualname__)
+        output_key = "{}:outputs".format(method.__qualname__)
+
+        self._redis.rpush(input_key, str(args))
+
+        # Call the original method and store the result
+        result = method(self, *args, **kwargs)
+        self._redis.rpush(output_key, str(result))
+        return result
+
+    return wrapper
+
+
 class Cache():
     """ Using Redis to cache data. """
     def __init__(self):
@@ -27,6 +45,7 @@ class Cache():
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
@@ -50,4 +69,4 @@ class Cache():
 
     def get_int(self, key: str) -> Optional[str]:
         """ Return a value in int format. """
-        return sefl.get(key, fn=int)
+        return self.get(key, fn=int)
