@@ -38,7 +38,7 @@ def call_history(method: Callable) -> Callable:
 
 
 def replay(method: Callable) -> None:
-    """ Displays the history of calls of a particular function. """
+    """ Displays the history of calls to a particular function. """
     input_key = "{}:inputs".format(method.__qualname__)
     output_key = "{}:outputs".format(method.__qualname__)
 
