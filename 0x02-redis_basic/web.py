@@ -12,6 +12,7 @@ from typing import Callable
 
 red = redis.Redis()
 
+
 def cache_response(func: Callable) -> Callable:
     """Decorator to cache the result of a function with an expiration time."""
     @wraps(func)
@@ -19,10 +20,11 @@ def cache_response(func: Callable) -> Callable:
         result = func(url)
         red.setex(url, 10, result)
         if result:
-            red.incr("count:{}".format(url))
+            red.incr("count:{{{}}}".format(url))
 
         return result
     return wrapper
+
 
 @cache_response
 def get_page(url: str) -> str:
