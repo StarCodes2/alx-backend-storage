@@ -18,9 +18,11 @@ def cache_response(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(url: str) -> str:
         result = func(url)
-        red.setex(url, 10, result)
         if result:
-            red.incr("count:{{{}}}".format(url))
+            red.setex(url, 10, result)
+            red.incr("count:{}".format(url))
+        elif not red.exists("count:{}".format(url)):
+            red.set("count:{}".format(url), 0)
 
         return result
     return wrapper
@@ -29,5 +31,13 @@ def cache_response(func: Callable) -> Callable:
 @cache_response
 def get_page(url: str) -> str:
     """ Fetch the HTML content of a url and cache it. """
-    response = requests.get(url)
-    return response.text
+    try:
+        response = requests.get(url)
+        return response.text
+    except:
+        return None
+
+if __name__ == "__main__":
+    url = "http://slowwly.robertomurray.co.uk"
+    print(get_page(url))
+    print(f"Access count for {url}: {red.get(f'count:{url}').decode('utf-8')}")
