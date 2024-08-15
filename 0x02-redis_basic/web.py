@@ -16,11 +16,10 @@ def cache_response(func: Callable) -> Callable:
     """Decorator to cache the result of a function with an expiration time."""
     @wraps(func)
     def wrapper(url: str) -> str:
-        ca_result = red.get(url)
-        if ca_result:
-            return ca_result.decode('utf-8')
         result = func(url)
         red.setex(url, 10, result)
+        if result:
+            red.incr("count:{}".format(url))
 
         return result
     return wrapper
@@ -28,6 +27,5 @@ def cache_response(func: Callable) -> Callable:
 @cache_response
 def get_page(url: str) -> str:
     """ Fetch the HTML content of a url and cache it. """
-    red.incr("count:{}".format(url))
     response = requests.get(url)
     return response.text
