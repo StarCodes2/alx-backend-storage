@@ -20,9 +20,6 @@ def cache_response(func: Callable) -> Callable:
         result = func(url)
         if result:
             red.setex(url, 10, result)
-            red.incr("count:{}".format(url))
-        elif not red.exists("count:{}".format(url)):
-            red.set("count:{}".format(url), 0)
 
         return result
     return wrapper
@@ -31,6 +28,7 @@ def cache_response(func: Callable) -> Callable:
 @cache_response
 def get_page(url: str) -> str:
     """ Fetch the HTML content of a url and cache it. """
+    red.incr("count:{}".format(url))
     try:
         response = requests.get(url)
         return response.text
