@@ -9,6 +9,7 @@ import requests
 import redis
 from functools import wraps
 from typing import Callable
+from time import sleep
 
 red = redis.Redis()
 
@@ -17,11 +18,9 @@ def cache_response(func: Callable) -> Callable:
     """Decorator to cache the result of a function with an expiration time."""
     @wraps(func)
     def wrapper(url: str) -> str:
-        result = func(url)
-        if result:
-            red.setex(url, 10, result)
+        red.expire("count:{}".format(url), 10)
+        return func(url)
 
-        return result
     return wrapper
 
 
@@ -29,8 +28,5 @@ def cache_response(func: Callable) -> Callable:
 def get_page(url: str) -> str:
     """ Fetch the HTML content of a url and cache it. """
     red.incr("count:{}".format(url))
-    try:
-        response = requests.get(url)
-        return response.text
-    except requests.exceptions.RequestException:
-        return None
+    response = requests.get(url)
+    return response.text
