@@ -18,7 +18,8 @@ def cache_response(func: Callable) -> Callable:
     """Decorator to cache the result of a function with an expiration time."""
     @wraps(func)
     def wrapper(url: str) -> str:
-        red.expire("count:{{{}}}".format(url), 10)
+        red.incr("count:{}".format(url))
+        red.expire("count:{}".format(url), 10)
         return func(url)
 
     return wrapper
@@ -27,6 +28,5 @@ def cache_response(func: Callable) -> Callable:
 @cache_response
 def get_page(url: str) -> str:
     """ Fetch the HTML content of a url and cache it. """
-    red.incr("count:{{{}}}".format(url))
     response = requests.get(url)
     return response.text
