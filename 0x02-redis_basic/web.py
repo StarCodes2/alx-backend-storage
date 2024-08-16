@@ -18,8 +18,8 @@ def cache_response(func: Callable) -> Callable:
     """Decorator to cache the result of a function with an expiration time."""
     @wraps(func)
     def wrapper(url: str) -> str:
-        red.incr("count:{}".format(url))
-        red.expire("count:{}".format(url), 10)
+        red.incr("count:{{{}}}".format(url))
+        red.expire("count:{{{}}}".format(url), 10)
         return func(url)
 
     return wrapper
